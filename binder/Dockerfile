@@ -78,7 +78,7 @@ RUN apt update && \
         rm /usr/bin/sh; \
     fi; \
     \
-    ln -s /usr/bin/bash /usr/bin/sh; \
+    ln -s /usr/bin/bash /usr/bin/sh;
 
 RUN \
     # install pip packages
@@ -91,7 +91,7 @@ RUN \
         py4j \
         quilt==2.9.15 \
         sos \
-        sos-notebook; \
+        sos-notebook;
     
 # Make sure the contents of our repo are in ${HOME}
 COPY ./binder ${HOME}/binder
