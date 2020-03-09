@@ -13,7 +13,9 @@
                   "coin",
                   "survminer",
                   "GGally",
-                  "plotly"
+                  "plotly",
+                  "pacman",
+                  "fastDummies"
     )
 
     # later tidyverse and plotly
