@@ -1,5 +1,5 @@
-# bash, sql, nosql and hadoop sessions
-FROM gesiscss/binder-serhatcevikel-2dthesis-5f2019-0aa27c:d7f30ea9ff10991629f0ae52adbc40b5c9f45b9c
+# notebooks
+FROM gesiscss/binder-serhatcevikel-2dthesis-5f2019-0aa27c:b66a74e3e5d3996e1a97a2aa3a28bf387b8c08ee
 LABEL maintainer="serhatcevikel@yahoo.com"
 
 ENV datadir ${HOME}/data
