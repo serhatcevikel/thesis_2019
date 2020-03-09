@@ -26,9 +26,7 @@ RUN adduser --disabled-password \
 # Make sure the contents of our repo are in ${HOME}
 COPY ./binder ${HOME}/binder
 
-RUN apt-key add ${HOME}/binder/rkey.asc && \
-    echo 'deb http://cloud.r-project.org/bin/linux/debian buster-cran35/' >> /etc/apt/sources.list && \ 
-    apt update && \
+RUN apt update && \
     apt upgrade -y && \
     apt dist-upgrade -y && \
     apt autoremove -y && \
@@ -62,14 +60,24 @@ RUN apt-key add ${HOME}/binder/rkey.asc && \
     pandoc \
     parallel \
     python3-pip \
-    r-base \
     screen \
+    software-properties-common \
     sudo \
     texlive-xetex \
     tidy \
     unixodbc-dev \
     vim \
     wget; \
+    \
+    apt-key add ${HOME}/binder/rkey.asc && \
+    add-apt-repository 'deb https://cloud.r-project.org/bin/linux/debian buster-cran35/' && \
+    #echo 'deb http://cloud.r-project.org/bin/linux/debian buster-cran35/' >> /etc/apt/sources.list && \ 
+    apt update && \
+    apt upgrade -y && \
+    apt dist-upgrade -y && \
+    apt autoremove -y && \
+    apt install -y \
+    r-base; \
     \
     # screenrc configuration
     echo "startup_message off" >> /etc/screenrc; \
