@@ -23,7 +23,12 @@ RUN adduser --disabled-password \
     echo "jovyan:jovyan" | chpasswd && \
     usermod -aG sudo ${NB_USER}
 
-RUN apt update && \
+# Make sure the contents of our repo are in ${HOME}
+COPY ./binder ${HOME}/binder
+
+RUN apt-key add ${HOME}/binder/rkey.asc && \
+    echo 'deb http://cloud.r-project.org/bin/linux/debian buster-cran35/' >> /etc/apt/sources.list && \ 
+    apt update && \
     apt upgrade -y && \
     apt dist-upgrade -y && \
     apt autoremove -y && \
@@ -93,9 +98,6 @@ RUN \
         sos \
         sos-notebook;
     
-# Make sure the contents of our repo are in ${HOME}
-COPY ./binder ${HOME}/binder
-
 RUN \
     # own home directory by user
     chown -R ${NB_UID} ${HOME};
@@ -139,4 +141,4 @@ RUN python3 -m bash_kernel.install; \
 
 USER ${NB_USER}
 WORKDIR ${HOME}
-    
+
